@@ -1,4 +1,4 @@
-export default function SolicitudCard({id, titulo, prioridad, estado, onResolver}) {
+export default function SolicitudCard({id, titulo, prioridad, estado, onResolver, onPendiente}) {
     return (
         <article>
             <h3>{titulo}</h3>
@@ -11,6 +11,12 @@ export default function SolicitudCard({id, titulo, prioridad, estado, onResolver
             >
                 Resolver
             </button>
+
+            <button
+            type="button"
+            onClick={() => onPendiente(id)}
+            disabled={estado !== 'Resuelta'}
+            >Pendiente</button>
         </article>
     )
 }

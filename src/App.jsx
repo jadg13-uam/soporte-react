@@ -32,7 +32,12 @@ function App() {
 
     function resolverSolicitud(id) {
         setSolicitudes(actuales => actuales.map(solicitud => solicitud.id === id ? {...solicitud, estado: 'Resuelta'} : solicitud ))
-        setMensaje('Solicitud resueltaa correctamente')
+        setMensaje('Solicitud resuelta correctamente')
+    }
+
+    function ponerPendienteSolicitud(id) {
+        setSolicitudes(actuales => actuales.map(solicitud =>solicitud.id === id ? {...solicitud, estado: 'Pendiente'} : solicitud ))
+        setMensaje('Solicitud Pendiente')
     }
 
     const visibles = solicitudes.filter(s =>
@@ -64,7 +69,7 @@ function App() {
                 <option>Resuelta</option>
             </select>
             {visibles.length === 0 ? <p>No hay resultados.</p> :
-                visibles.map(s => <SolicitudCard key={s.id} {...s} onResolver={resolverSolicitud} />)}
+                visibles.map(s => <SolicitudCard key={s.id} {...s} onResolver={resolverSolicitud} onPendiente={ponerPendienteSolicitud} />)}
         </main>
     )
 }
